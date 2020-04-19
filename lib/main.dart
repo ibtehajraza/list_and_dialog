@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import './question.dart';
+
 // void main() {
 //   runApp(MyApp());
 // }
@@ -14,7 +16,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  
   var _questionIndex = 0;
 
   void _qandA() {
@@ -40,7 +41,9 @@ class _MyAppState extends State<MyApp> {
         body: Center(
           child: Column(
             children: <Widget>[
-              Text(questions[_questionIndex]),
+              Question(
+                questions[_questionIndex],
+              ),
               RaisedButton(
                 child: Text('data'),
                 onPressed: _qandA,
