@@ -9,22 +9,23 @@ void main() => runApp(MyApp());
 class MyApp extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return MyAppState();
+    return _MyAppState();
   }
 }
 
-class MyAppState extends State<MyApp> {
-  var questionIndex = 0;
+class _MyAppState extends State<MyApp> {
+  
+  var _questionIndex = 0;
 
-  void qandA() {
+  void _qandA() {
     setState(() {
-      if (questionIndex == 1) {
-        questionIndex = 0;
-      }else{
-        questionIndex = 1;
+      if (_questionIndex == 1) {
+        _questionIndex = 0;
+      } else {
+        _questionIndex = 1;
       }
     });
-    print(questionIndex);
+    print(_questionIndex);
   }
 
   var questions = ['This is first', 'This is second'];
@@ -39,10 +40,10 @@ class MyAppState extends State<MyApp> {
         body: Center(
           child: Column(
             children: <Widget>[
-              Text(questions[questionIndex]),
+              Text(questions[_questionIndex]),
               RaisedButton(
                 child: Text('data'),
-                onPressed: qandA,
+                onPressed: _qandA,
               ),
               RaisedButton(
                 child: Text('data'),
