@@ -1,6 +1,6 @@
 # list_and_dialogs
 
-A new Flutter project.
+This is flutter SandBox for learning and stuff.
 
 ## Getting Started
 
