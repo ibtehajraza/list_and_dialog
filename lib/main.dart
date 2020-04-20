@@ -30,7 +30,20 @@ class _MyAppState extends State<MyApp> {
     print(_questionIndex);
   }
 
-  var questions = ['This is first', 'This is second'];
+  var questions = [
+    {
+      'questionText': 'This is question 1', 
+      'answers': ['Black', 'Red', 'Cyne']
+    },
+    {
+      'questionText': 'This is question 2', 
+      'answers': ['Goc', 'Cog', 'Dog']
+    },
+    {
+      'questionText': 'This is question 3', 
+      'answers': ['Tired', 'Sleep', 'Wake']
+    },
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -38,20 +51,20 @@ class _MyAppState extends State<MyApp> {
       home: Scaffold(
         appBar: AppBar(
           title: Text('Title'),
+          backgroundColor: Colors.green,
         ),
         body: Center(
           child: Column(
             children: <Widget>[
               Question(
-                questions[_questionIndex],
+                questions[_questionIndex]['questionText'],
               ),
-              RaisedButton(
-                child: Text('data'),
-                onPressed: _questionsAnswer,
-              ),
+              ...(questions[_questionIndex]['answers'] as List<String>).map((ans){
+                return Answer(_questionsAnswer,ans);
+              }).toList(),
+              /*Answer(_questionsAnswer),
               Answer(_questionsAnswer),
-              Answer(_questionsAnswer),
-              Answer(_questionsAnswer)
+              Answer(_questionsAnswer)*/
             ],
           ),
         ),
