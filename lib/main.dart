@@ -19,29 +19,44 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   var _questionIndex = 0;
 
-  void _questionsAnswer() {
+  var _totalScore=0;
+
+  void _questionsAnswer(int score) {
     setState(() {
       _questionIndex++;
-      // if (_questionIndex < questions.length-1) {
-      // } else {
-      //   _questionIndex = 0;
-      // }
     });
+
+    _totalScore += score;
+
+
+
+    print('Total Score: '+_totalScore.toString());
     print(_questionIndex);
+  }
+
+  void _reset(){
+    setState(() {
+    _questionIndex = 0;
+    _totalScore = 0;
+    });
   }
 
   final _questions = [
     {
       'questionText': 'This is question 1',
-      'answers': ['Black', 'Red', 'Cyne']
+      'answers': [
+        {'text': 'Black', 'score': 8},
+        {'text': 'Red', 'score': 1},
+        {'text': 'Cyne', 'score': 3}
+      ]
     },
     {
       'questionText': 'This is question 2',
-      'answers': ['Goc', 'Cog', 'Dog','CAR']
+      'answers': [{'text':'Goc','score':5}, {'text':'Cog','score':9}, {'text':'Dog0','score':3}]
     },
     {
       'questionText': 'This is question 3',
-      'answers': ['Tired', 'Sleep', 'Wake']
+      'answers': [{'text':'Tired','score':1}, {'text':'Sleep','score':15}]
     },
   ];
 
@@ -60,7 +75,7 @@ class _MyAppState extends State<MyApp> {
                   questionIndex: _questionIndex,
                   questions: _questions,
                 )
-              : Result(),
+              : Result(_totalScore,_reset),
         ),
       ),
     );
