@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import './question.dart';
-import './answer.dart';
+import './quiz.dart';
+import './result.dart';
 
 // void main() {
 //   runApp(MyApp());
@@ -21,7 +21,7 @@ class _MyAppState extends State<MyApp> {
 
   void _questionsAnswer() {
     setState(() {
-        _questionIndex ++;
+      _questionIndex++;
       // if (_questionIndex < questions.length-1) {
       // } else {
       //   _questionIndex = 0;
@@ -30,17 +30,17 @@ class _MyAppState extends State<MyApp> {
     print(_questionIndex);
   }
 
-  final questions = [
+  final _questions = [
     {
-      'questionText': 'This is question 1', 
+      'questionText': 'This is question 1',
       'answers': ['Black', 'Red', 'Cyne']
     },
     {
-      'questionText': 'This is question 2', 
-      'answers': ['Goc', 'Cog', 'Dog']
+      'questionText': 'This is question 2',
+      'answers': ['Goc', 'Cog', 'Dog','CAR']
     },
     {
-      'questionText': 'This is question 3', 
+      'questionText': 'This is question 3',
       'answers': ['Tired', 'Sleep', 'Wake']
     },
   ];
@@ -54,19 +54,13 @@ class _MyAppState extends State<MyApp> {
           backgroundColor: Colors.green,
         ),
         body: Center(
-          child: _questionIndex < questions.length ? Column(
-            children: <Widget>[
-              Question(
-                questions[_questionIndex]['questionText'],
-              ),
-              ...(questions[_questionIndex]['answers'] as List<String>).map((ans){
-                return Answer(_questionsAnswer,ans);
-              }).toList(),
-              /*Answer(_questionsAnswer),
-              Answer(_questionsAnswer),
-              Answer(_questionsAnswer)*/
-            ],
-          ) : Center(child: Text('Final Page !t is.'),),
+          child: _questionIndex < _questions.length
+              ? Quiz(
+                  handlerFunction: _questionsAnswer,
+                  questionIndex: _questionIndex,
+                  questions: _questions,
+                )
+              : Result(),
         ),
       ),
     );
