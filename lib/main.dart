@@ -21,16 +21,16 @@ class _MyAppState extends State<MyApp> {
 
   void _questionsAnswer() {
     setState(() {
-      if (_questionIndex == 1) {
-        _questionIndex = 0;
-      } else {
-        _questionIndex = 1;
-      }
+        _questionIndex ++;
+      // if (_questionIndex < questions.length-1) {
+      // } else {
+      //   _questionIndex = 0;
+      // }
     });
     print(_questionIndex);
   }
 
-  var questions = [
+  final questions = [
     {
       'questionText': 'This is question 1', 
       'answers': ['Black', 'Red', 'Cyne']
@@ -54,7 +54,7 @@ class _MyAppState extends State<MyApp> {
           backgroundColor: Colors.green,
         ),
         body: Center(
-          child: Column(
+          child: _questionIndex < questions.length ? Column(
             children: <Widget>[
               Question(
                 questions[_questionIndex]['questionText'],
@@ -66,7 +66,7 @@ class _MyAppState extends State<MyApp> {
               Answer(_questionsAnswer),
               Answer(_questionsAnswer)*/
             ],
-          ),
+          ) : Center(child: Text('Final Page !t is.'),),
         ),
       ),
     );
